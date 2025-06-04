@@ -1,0 +1,249 @@
+/* Base styles */
+:root {
+    --primary: #00E400;
+    --secondary: #0088FF;
+    --dark-bg: #0a0a0a;
+    --darker-bg: #050505;
+    --card-bg: rgba(20, 20, 30, 0.7);
+    --text: #ffffff;
+    --text-muted: #aaaaaa;
+}
+
+/* Particle canvas positioning */
+canvas#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+/* Header styles */
+.header-container {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: linear-gradient(90deg, rgba(10,10,20,0.7) 0%, rgba(0,136,255,0.3) 50%, rgba(10,10,20,0.7) 100%);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 228, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0, 228, 0, 0.1);
+}
+
+h1.glow {
+    color: var(--text);
+    text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+    font-size: 3.5rem;
+    margin-bottom: 0;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 30px var(--primary); }
+    100% { opacity: 0.8; }
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+
+/* Card styles */
+.stTabs [data-baseweb="tab-list"] {
+    background: var(--card-bg);
+    border-radius: 10px 10px 0 0;
+    padding: 0.5rem;
+}
+
+.stTabs [aria-selected="true"] {
+    background: rgba(0, 228, 0, 0.2) !important;
+    color: var(--primary) !important;
+    font-weight: bold;
+}
+
+[data-testid="stVerticalBlock"] > div:not(:first-child) {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* AQI display styles */
+.current-aqi {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(10, 20, 30, 0.7);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 228, 0, 0.3);
+    margin-bottom: 1.5rem;
+}
+
+.aqi-pulse {
+    position: relative;
+    padding: 1rem;
+}
+
+.aqi-pulse::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    border: 2px solid var(--aqi-color);
+    animation: pulseBorder 3s infinite;
+    opacity: 0.7;
+}
+
+@keyframes pulseBorder {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.02); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.7; }
+}
+
+.aqi-value {
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin: 0.5rem 0;
+    text-shadow: 0 0 10px var(--primary);
+}
+
+.aqi-status {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+/* Pollutant bars */
+.pollutant-bar {
+    margin-bottom: 1rem;
+}
+
+.pollutant-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+}
+
+.pollutant-name {
+    font-weight: bold;
+    color: var(--text);
+}
+
+.pollutant-value {
+    color: var(--text-muted);
+}
+
+.pollutant-meter {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.pollutant-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease;
+}
+
+/* Gauge styles */
+.gauge-container {
+    width: 100%;
+    max-width: 300px;
+    margin: 2rem auto;
+}
+
+.gauge {
+    position: relative;
+    height: 0;
+    padding-bottom: 50%;
+}
+
+.gauge-body {
+    width: 100%;
+    height: 0;
+    padding-bottom: 50%;
+    position: relative;
+    border-top-left-radius: 100% 200%;
+    border-top-right-radius: 100% 200%;
+    overflow: hidden;
+    background: var(--darker-bg);
+}
+
+.gauge-fill {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center top;
+    transform: rotate(0.5turn);
+}
+
+.gauge-cover {
+    width: 75%;
+    height: 150%;
+    background: var(--card-bg);
+    border-radius: 50%;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset;
+}
+
+.gauge-label {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Prediction result */
+.prediction-result {
+    text-align: center;
+    margin-top: 2rem;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h1.glow {
+        font-size: 2.5rem;
+    }
+    
+    .aqi-value {
+        font-size: 3rem;
+    }
+}
